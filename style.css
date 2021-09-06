@@ -7,6 +7,7 @@
     border-radius: 15px;
     display:flex;
     flex-direction: column;
+    overflow:auto;
 }
 .shelf{
     border-bottom: 0.4em solid #3c2e27;
@@ -17,4 +18,19 @@
     flex-direction: row;
     justify-content:space-around;
     overflow:hidden;
+}
+
+#book-form{
+    border:2px solid darkblue;
+    border-radius: 8px;
+    margin-left:30%;
+    margin-right:30%;
+    text-align: center;
+    background-color: cyan;
+    display:none;
+    position: absolute;
+}
+
+.zoom:hover{
+    transform: scale(2.0);
 }
