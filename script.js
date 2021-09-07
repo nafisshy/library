@@ -73,6 +73,10 @@ function addBookToShelf(book){
     div.appendChild(remove);
     div.dataset.bookNumber=bookNumber++;
         let shelfId=getShelf();
+        console.log(shelfId);
+        if(shelfId!="#shelf1"&&shelfId!="#shelf2"&&shelfId!="#shelf3"){
+            create_new_shelf();
+        }
         const shelf= document.querySelector(shelfId);
         shelf.appendChild(div);
         resize_to_fit(bookTitle,div,20);
@@ -94,10 +98,13 @@ function addBookToShelf(book){
 
 function appending_new_book_btn(){
     let shelfId=getShelf();
+    if(shelfId!="#shelf1"&&shelfId!="#shelf2"&&shelfId!="#shelf3"){
+        create_new_shelf();
+    }
     const shelf= document.querySelector(shelfId);
     const div=document.createElement('div');
     div.setAttribute("id","add-bk-btn");
-    div.style.cssText="background-color:#cfa67c;width:14%; font-family: 'Eagle Lake'; overflow:auto;  height:90%; display:flex; flex-direction:column; align-items:center; border:4px solid darkgoldenrod";
+    div.style.cssText="background-color:#cfa67c;width:14%; font-family: 'Eagle Lake'; height:90%; display:flex; flex-direction:column; align-items:center; border:4px solid darkgoldenrod";
     const p= document.createElement('p');
     p.textContent="Add New Book";
     div.append(p);
@@ -116,16 +123,12 @@ function appending_new_book_btn(){
 }
 
 function getShelf(){
-    i++;
-    if(i<=6){
-        return "#shelf1";
+    ++i;
+    if(i%6==0){
+        shelfNo++;
+        i++;
     }
-    if(i<=10){
-        return "#shelf2";
-    }
-    if(i<=15){
-        return "#shelf3";
-    }
+        return "#shelf"+shelfNo;
 }
 
 function resize_to_fit(node,nodeContainer,initialFontSize) {
@@ -172,4 +175,12 @@ function resize_to_fit(node,nodeContainer,initialFontSize) {
     let currentBookNumber=book.dataset.bookNumber;
     myLibrary.splice(currentBookNumber,1);
     book.remove();
+  }
+
+  function create_new_shelf(){
+      const container=document.getElementById("container");
+      const newShelf=document.createElement('div');
+      newShelf.setAttribute("id","shelf"+shelfNo);
+      newShelf.classList.toggle('shelf');
+      container.append(newShelf);
   }
