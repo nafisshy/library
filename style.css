@@ -13,7 +13,6 @@
     border-bottom: 0.4em solid #3c2e27;
     height: 1fr;
     flex-grow: 1;
-   /*flex-basis: 0;*/
     display:flex;
     flex-direction: row;
     justify-content:space-around;

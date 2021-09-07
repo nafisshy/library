@@ -1,12 +1,59 @@
-let myLibrary=[];
-let i=0;
+let myLibrary=[];//the collection of books is maintained in this array
+let i=0;//this is a helping varible used to keep track of number of books in each shelf
 let bookNumber=0;
 let shelfNo=1;
-addBookToLibrary("Pride and Prejudice","Jane Austen",328,true);
-addBookToLibrary("Epic of Gilgamesh","Sin-Leki-Anini",12,true);
-display();
-appending_new_book_btn();
 
+function storageAvailable(type) {
+    var storage;
+    try {
+        storage = window[type];
+        var x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            (storage && storage.length !== 0);
+    }
+}
+
+if (storageAvailable('localStorage')) {
+    // Yippee! We can use localStorage awesomeness
+    console.log("storage avialable");
+    if(localStorage.getItem('library')) {
+        myLibrary=JSON.parse(window.localStorage.getItem('library'));
+        display();
+      } else {
+        console.log("storage available but could not be accesed");
+        initial_books();
+      }
+  }
+  else {
+    console.log("storage is not available");
+    //Adding two books to the display
+    initial_books();
+}
+
+function initial_books(){
+    addBookToLibrary("Pride and Prejudice","Jane Austen",328,true);
+    addBookToLibrary("Epic of Gilgamesh","Sin-Leki-Anini",12,true);
+    display();
+}
+appending_new_book_btn();
+function update_library(){
+    window.localStorage.setItem('library', JSON.stringify(myLibrary));
+}
 function Book(title,author,pages,read){
     this.title=title;
     this.author=author;
@@ -17,6 +64,7 @@ function Book(title,author,pages,read){
 function addBookToLibrary(title,author,pages,read){
     const newBook = new Book(title,author,pages,read);
     myLibrary.push(newBook);
+    update_library();
 }
 
 function display(){
@@ -71,9 +119,8 @@ function addBookToShelf(book){
         remove.style.backgroundColor="#008080";
         remove.style.color="#e0e0e0";
     div.appendChild(remove);
-    div.dataset.bookNumber=bookNumber++;
+    div.dataset.bookNumber=bookNumber++;//associating book number withe the div displaying that particular book
         let shelfId=getShelf();
-        console.log(shelfId);
         const shelf= document.querySelector(shelfId);
         shelf.appendChild(div);
         resize_to_fit(bookTitle,div,20);
@@ -144,6 +191,7 @@ function resize_to_fit(node,nodeContainer,initialFontSize) {
   }
 
   function add_book(){
+      //acceseses form inputs to create a new book and adds it to library
       let bookTitle=document.getElementById("book-title").value;
       let author=document.getElementById("author").value;
       let pages=document.getElementById("pages").value;
@@ -172,6 +220,7 @@ function resize_to_fit(node,nodeContainer,initialFontSize) {
     }
     let currentBookNumber=book.dataset.bookNumber;
     myLibrary.splice(currentBookNumber,1);
+    update_library();
     book.remove();
   }
 

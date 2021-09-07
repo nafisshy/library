@@ -17,7 +17,7 @@
    <div id="container">
        <div id="shelf1" class="shelf"></div>
        <div class="form-popup" id="book-form">
-        <form class="form-container">
+        <form class="form-container" onsubmit="add_book();">
           <h1>Please fill the book details</h1>
 
                 
@@ -33,7 +33,7 @@
           <label for="read">Have you read the book?</label>
           <input type="checkbox" name="read" id="read"><br><br>
           
-          <button type="button" onclick="add_book();" class="btn">Add</button>
+          <button type="submit" class="btn">Add</button>
           <button type="button" class="btn" onclick="closeForm()">Close</button>
         </form>
       </div> 
