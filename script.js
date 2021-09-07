@@ -95,6 +95,9 @@ function addBookToShelf(book){
 
 function appending_new_book_btn(){
     let shelfId=getShelf();
+    if(shelfId!="#shelf1"&&shelfId!="#shelf2"&&shelfId!="#shelf3"){
+        create_new_shelf();
+    }
     const shelf= document.querySelector(shelfId);
     const div=document.createElement('div');
     div.setAttribute("id","add-bk-btn");
