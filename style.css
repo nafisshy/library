@@ -30,6 +30,23 @@
     position: absolute;
 }
 
+#clear-button{
+    border:none;
+    border-radius: 5px;
+    background-color:rgb(119, 72, 18);
+    color: #e0e0e0;
+    width:100px;
+    font-family: sans-serif;
+    margin: auto;
+    text-align: center;
+    padding: 1.0em;
+}
+
+#clear-button:hover{
+    transform: scale(1.2);
+    border:3px solid rgb(163, 100, 48);
+}
+
 .zoom:hover{
     transform: scale(2.0);
 }

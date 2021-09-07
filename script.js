@@ -231,3 +231,14 @@ function resize_to_fit(node,nodeContainer,initialFontSize) {
       newShelf.classList.toggle('shelf');
       container.append(newShelf);
   }
+
+  function clearLibrary(){
+    let confirmed=confirm("Are you sure? All the books will be deleted!");
+    if(!confirmed){
+        return;
+    }
+      myLibrary=[];
+      update_library();
+      const books = document.querySelectorAll('[data-book-number]');
+      books.forEach(book=>book.remove());
+  }
