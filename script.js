@@ -1,5 +1,7 @@
 let myLibrary=[];
 let i=0;
+let bookNumber=0;
+let shelfNo=1;
 addBookToLibrary("Pride and Prejudice","Jane Austen",328,true);
 addBookToLibrary("Epic of Gilgamesh","Sin-Leki-Anini",12,true);
 display();
@@ -48,8 +50,9 @@ function addBookToShelf(book){
         const bookRead=document.createElement('button');
 
         bookRead.style.border="none";
-        bookRead.style.borderRadius="3px";
+        bookRead.style.borderRadius="5%";
         bookRead.style.paddingTop="0";
+        bookRead.style.color="#e0e0e0";
         if(book.read==true){
             bookRead.textContent="READ";
             bookRead.style.backgroundColor="green";
@@ -59,11 +62,22 @@ function addBookToShelf(book){
             bookRead.style.backgroundColor="red";
         }       
     div.appendChild(bookRead);
+        const remove=document.createElement('button');
+
+        remove.style.border="none";
+        remove.style.borderRadius="5%";
+        remove.style.paddingTop="0";
+        remove.textContent="REMOVE";
+        remove.style.backgroundColor="#008080";
+        remove.style.color="#e0e0e0";
+    div.appendChild(remove);
+    div.dataset.bookNumber=bookNumber++;
         let shelfId=getShelf();
         const shelf= document.querySelector(shelfId);
         shelf.appendChild(div);
         resize_to_fit(bookTitle,div,20);
         resize_to_fit(bookAuthor,div,15);
+        resize_to_fit(bookPage,div,10);
         bookRead.addEventListener('click',function(){
             book.read=!book.read;
             if(book.read==true){
@@ -75,8 +89,7 @@ function addBookToShelf(book){
                 bookRead.style.backgroundColor="red";
             }
         });
-   
-
+        remove.addEventListener('click',()=>remove_book(div));
 }
 
 function appending_new_book_btn(){
@@ -149,4 +162,14 @@ function resize_to_fit(node,nodeContainer,initialFontSize) {
   function displayLastBook(){
       let book= myLibrary[myLibrary.length-1];
       addBookToShelf(book);
+  }
+
+  function remove_book(book){
+    let confirmed=confirm("Are you sure? This book will be deleted");
+    if(!confirmed){
+        return;
+    }
+    let currentBookNumber=book.dataset.bookNumber;
+    myLibrary.splice(currentBookNumber,1);
+    book.remove();
   }
