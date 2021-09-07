@@ -241,4 +241,9 @@ function resize_to_fit(node,nodeContainer,initialFontSize) {
       update_library();
       const books = document.querySelectorAll('[data-book-number]');
       books.forEach(book=>book.remove());
+      const shelfs = document.querySelectorAll('.shelf');
+      shelfs.forEach(shelf=>shelf.remove());
+      shelfNo=1;
+      create_new_shelf();
+      appending_new_book_btn();
   }
