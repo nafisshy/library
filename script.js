@@ -128,6 +128,7 @@ function addBookToShelf(book){
         resize_to_fit(bookPage,div,10);
         bookRead.addEventListener('click',function(){
             book.read=!book.read;
+            update_library();
             if(book.read==true){
                 bookRead.textContent="READ";
                 bookRead.style.backgroundColor="green";
