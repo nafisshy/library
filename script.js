@@ -75,7 +75,7 @@ function display(){
 
 function addBookToShelf(book){
     const div=document.createElement('div');
-        div.style.cssText="background-color:#cfa67c;width:14%; height:90%; font-family: 'Eagle Lake'; display:flex; flex-direction:column; align-items:center; justify-content:space-around; border:4px solid darkgoldenrod";
+        div.style.cssText="background-color:#cfa67c;width:14%; max-height:100%; font-family: 'Eagle Lake'; display:flex; flex-direction:column; align-items:center; justify-content:space-around; border:4px solid darkgoldenrod";
         const bookTitle=document.createElement('p');
         bookTitle.textContent= book.title;
         bookTitle.style.minHeight="0";
