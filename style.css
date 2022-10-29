@@ -50,3 +50,9 @@
 .zoom:hover{
     transform: scale(2.0);
 }
+
+#plus{
+    background-color: antiquewhite;
+    padding:5px 20px 5px 20px;
+    border-radius: 5px;
+}

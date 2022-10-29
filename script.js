@@ -153,11 +153,16 @@ function appending_new_book_btn(){
     const p= document.createElement('p');
     p.textContent="Add New Book";
     div.append(p);
-    const img=document.createElement('img');
+    /*const img=document.createElement('img');
     img.setAttribute("src","plus-sign.png");
     img.height=60;
-    img.width=80;
-    div.append(img);
+    img.width=80;*/
+    const plus= document.createElement('div');
+    plus.textContent="+";
+    plus.style.fontSize="40px";
+    plus.setAttribute('id','plus');
+    div.append(plus);
+    //div.append(img);
     shelf.append(div);
     div.addEventListener('click',()=>{
         const form = document.getElementById("book-form");
