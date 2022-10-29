@@ -28,6 +28,7 @@
     background-color: cyan;
     display:none;
     position: absolute;
+    padding: 0.5rem;
 }
 
 #clear-button{

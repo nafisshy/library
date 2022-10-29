@@ -102,7 +102,7 @@ function addBookToShelf(book){
         bookRead.style.paddingTop="0";
         bookRead.style.color="#e0e0e0";
         if(book.read==true){
-            bookRead.textContent="READ";
+            bookRead.textContent="READ STATUS";
             bookRead.style.backgroundColor="green";
         }
         else{
@@ -130,7 +130,7 @@ function addBookToShelf(book){
             book.read=!book.read;
             update_library();
             if(book.read==true){
-                bookRead.textContent="READ";
+                bookRead.textContent="READ STATUS";
                 bookRead.style.backgroundColor="green";
             }
             else{
@@ -153,10 +153,6 @@ function appending_new_book_btn(){
     const p= document.createElement('p');
     p.textContent="Add New Book";
     div.append(p);
-    /*const img=document.createElement('img');
-    img.setAttribute("src","plus-sign.png");
-    img.height=60;
-    img.width=80;*/
     const plus= document.createElement('div');
     plus.textContent="+";
     plus.style.fontSize="40px";
